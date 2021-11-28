@@ -1,24 +1,70 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type    | Options      |
+| ------------------ | ------  | ------------ |
+| name               | string  | null: false  |
+| email              | string  | unique: true |
+| encrypted_password | string  | null: false  | 
+| birthday           | integer | null: false  |
 
-* Ruby version
+### Association
+- has_many  :item_users
+- has_many  :items, through: :item_users 
+- has_one   :purchase record
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column      |Type    |Options      |
+| ----------- | ------ | ----------- |
+| item_image  | text   | null: false |
+| item_name   | string | null: false |
+| explanation | text   | null: false |
+| category    | text   | null: false |
 
-* Database creation
+### Association
+- has_many  :item_users
+- has_many  :users, through: :item_users
+- has_one   :purchase record
 
-* Database initialization
+## item_users テーブル
 
-* How to run the test suite
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+### Association
+- belong_to :users
+- belong_to :items
 
-* ...
+## purchase history テーブル
+
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
+
+### Association
+belong_to  :items
+belong_to  :users
+belong_to  :sending
+
+## sending テーブル
+
+| Column           | Type       | Options                        |
+| -----------------| ---------- | ------------------------------ |
+| postal code      | integer    | null: false                    |
+| prefectures      | string     | null: false                    |
+| city             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building         | string     | null: false                    |
+| telephone number | integer    | null: false                    |
+| item             | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
+
+
+## Association
+has_many  :purchase record
