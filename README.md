@@ -14,27 +14,26 @@
 | birthday           | date    | null: false  |
 
 ### Associatio
-- has_many  :item
+- has_many  :items
 - has_many  :purchase_records
 
 ## items テーブル
 
-| Column       |Type        |Options                          |
-| ------------ | ---------- | ------------------------------- |
-| user         | references | null: false, foreign_key: true  |
-| item_name    | string     | null: false                     |
-| explanation  | text       | null: false                     |
-| category     | text       | null: false                     |
-| condition    | string     | null: false                     |
-| delivery_fee | integer    | null: false                     |
-| consignor    | string     | null: false                     |
-| ship_date    | date       | null: false                     |
-
+| Column          |Type        |Options                          |
+| --------------- | ---------- | ------------------------------- |
+| user            | references | null: false, foreign_key: true  |
+| item_name       | string     | null: false                     |
+| explanation     | text       | null: false                     |
+| category_id     | integer    | null: false                     |
+| condition_id    | integer    | null: false                     |
+| delivery_fee_id | integer    | null: false                     |
+| consignor_id    | integer    | null: false                     |
+| ship_date_id    | integer    | null: false                     |
 
 
 ### Association
-- belongs_to  :users
-- has_one     :purchase_records
+- belongs_to  :user
+- has_one     :purchase_record
 
 
 
@@ -46,22 +45,22 @@
 | item      | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to  :items
-belongs_to  :users
+belongs_to  :item
+belongs_to  :user
 has_one     :sending
 
 ## sending テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| purchase_record  | integer    | null: false, foreign_key: true |
-| postal_code      | string     | null: false                    |
-| prefectures      | string     | null: false                    |
-| city             | string     | null: false                    |
-| address          | string     | null: false                    |
-| building         | string     |                                |
-| telephone_number | string     | null: false                    |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| purchase_record    | references | null: false, foreign_key: true |
+| postal_code        | string     | null: false                    |
+| prefectures_id     | integer    | null: false                    |
+| city               | string     | null: false                    |
+| address            | string     | null: false                    |
+| building           | string     |                                |
+| telephone_number   | string     | null: false                    |
 
 
 ## Association
-belongs_to  :purchase_records
+has_many  :purchase_records
