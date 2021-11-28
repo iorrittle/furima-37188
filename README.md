@@ -7,40 +7,38 @@
 | name               | string  | null: false  |
 | email              | string  | unique: true |
 | encrypted_password | string  | null: false  | 
-| birthday           | integer | null: false  |
+| last_name          | string  | null: false  |
+| first_name         | string  | null: false  |
+| last_name_kana     | string  | null: false  |
+| first_name_kana    | string  | null: false  |
+| birthday           | date    | null: false  |
 
-### Association
-- has_many  :item_users
-- has_many  :items, through: :item_users 
-- has_one   :purchase record
+### Associatio
+- has_many  :item
+- has_many  :purchase_records
 
 ## items テーブル
 
-| Column      |Type    |Options      |
-| ----------- | ------ | ----------- |
-| item_image  | text   | null: false |
-| item_name   | string | null: false |
-| explanation | text   | null: false |
-| category    | text   | null: false |
+| Column       |Type        |Options                          |
+| ------------ | ---------- | ------------------------------- |
+| user         | references | null: false, foreign_key: true  |
+| item_name    | string     | null: false                     |
+| explanation  | text       | null: false                     |
+| category     | text       | null: false                     |
+| condition    | string     | null: false                     |
+| delivery_fee | integer    | null: false                     |
+| consignor    | string     | null: false                     |
+| ship_date    | date       | null: false                     |
 
-### Association
-- has_many  :item_users
-- has_many  :users, through: :item_users
-- has_one   :purchase record
-
-## item_users テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| item   | references | null: false, foreign_key: true |
 
 
 ### Association
-- belong_to :users
-- belong_to :items
+- belongs_to  :users
+- has_one     :purchase_records
 
-## purchase history テーブル
+
+
+## purchase_records テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
@@ -48,23 +46,22 @@
 | item      | references | null: false, foreign_key: true |
 
 ### Association
-belong_to  :items
-belong_to  :users
-belong_to  :sending
+belongs_to  :items
+belongs_to  :users
+has_one     :sending
 
 ## sending テーブル
 
 | Column           | Type       | Options                        |
-| -----------------| ---------- | ------------------------------ |
-| postal code      | integer    | null: false                    |
+| ---------------- | ---------- | ------------------------------ |
+| purchase_record  | integer    | null: false, foreign_key: true |
+| postal_code      | string     | null: false                    |
 | prefectures      | string     | null: false                    |
 | city             | string     | null: false                    |
 | address          | string     | null: false                    |
-| building         | string     | null: false                    |
-| telephone number | integer    | null: false                    |
-| item             | references | null: false, foreign_key: true |
-| user             | references | null: false, foreign_key: true |
+| building         | string     |                                |
+| telephone_number | string     | null: false                    |
 
 
 ## Association
-has_many  :purchase record
+belongs_to  :purchase_records
