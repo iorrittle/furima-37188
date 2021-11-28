@@ -55,7 +55,7 @@ has_one     :sending
 | ------------------ | ---------- | ------------------------------ |
 | purchase_record    | references | null: false, foreign_key: true |
 | postal_code        | string     | null: false                    |
-| prefectures_id     | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
 | building           | string     |                                |
