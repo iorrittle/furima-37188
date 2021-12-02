@@ -3,7 +3,11 @@ class Item < ApplicationRecord
   belongs_to  :user
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :choice
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :delivery_fee
+  belongs_to :prefecture
+  belongs_to :ship_date
 
   validates :user,              null: false, foreign_key: true  
   validates :item_name,         null: false                     
