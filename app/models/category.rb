@@ -1,4 +1,4 @@
-class Choice < ActiveHash::Base
+class Category < ActiveHash::Base
 
  
   
