@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :ship_date
   belongs_to :user
 
-  #validates :user_id,           null: false, foreign_key: true  
+  #validates :user,              null: false, foreign_key: true  
   validates :item_name,         null: false                     
   validates :price,             null: false
   validates :explanation,       null: false                    
