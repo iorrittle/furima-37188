@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :prefecture
   belongs_to :ship_date
-  belongs_to :user
+
 
   
   validates :item_name,         null: false                     
