@@ -105,7 +105,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
-      #本人情報確認　[お名前]名字
+      #本人情報確認 [お名前]名字
       it 'last_nameが空では登録できない' do
         @user.last_name = ''
         @user.valid?

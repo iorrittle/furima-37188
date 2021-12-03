@@ -10,16 +10,17 @@ class Item < ApplicationRecord
   belongs_to :ship_date
   belongs_to :user
 
-  #validates :user,              null: false, foreign_key: true  
+  
   validates :item_name,         null: false                     
-  validates :price,             null: false
-  validates :explanation,       null: false                    
+  validates :price, numericality: { greater_than: 300 , less_than: 9_999_999},
+  format: { with: /\A[0-9]+\z/ , message: 'Price is invalid.harf-width characters' }
+  validates :explanation, presence: true                    
   validates :category_id,       null: false                     
   validates :condition_id,      null: false                     
   validates :delivery_fee_id,   null: false                     
   validates :prefecture_id,     null: false                     
   validates :ship_date_id,      null: false
-
+  validates :image, presence: true
 
 
 
