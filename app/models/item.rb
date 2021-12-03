@@ -16,6 +16,12 @@ class Item < ApplicationRecord
   format: { with: /\A[0-9]+\z/ , message: 'Price is invalid.harf-width characters' }
   validates :explanation, presence: true                    
   validates :image, presence: true
+  validates :category_id, presence: true
+  validates :condition_id, presence: true
+  validates :delivery_fee_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :ship_date_id, presence: true
+
   validates :category_id, numericality: { other_than: 1, message: "can't be blank"}
   validates :condition_id, numericality: { other_than: 1, message: "can't be blank"}
   validates :delivery_fee_id, numericality: { other_than: 1, message: "can't be blank"}

@@ -14,7 +14,7 @@ RSpec.describe Item, type: :model do
       end  
     end  
     context '商品が出品できないとき' do
-      #null: false のテスト
+      
       it '画像が空だと出品できない' do
         @item.image = nil
         @item.valid?
@@ -34,7 +34,10 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end  
-    
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        
+
+      end  
       it '状態が空だと出品できない' do
         @item.condition_id = nil
         @item.valid?
