@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   
   
   def index
-    
+    @items = Item.all
+    #@item = item.includes(:purchase_record)
   end
 
   def new
