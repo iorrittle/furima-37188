@@ -9,6 +9,7 @@ class PurchaseRecordsController < ApplicationController
   
   
   def create
+    
     Purchase_Record.create(purchase_record_params)
    
   end  
@@ -16,6 +17,6 @@ class PurchaseRecordsController < ApplicationController
   def purchase_record_params
     
 
-
+  end
 
 end
