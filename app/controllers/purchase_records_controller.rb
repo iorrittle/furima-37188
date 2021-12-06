@@ -1,7 +1,11 @@
 class PurchaseRecordsController < ApplicationController
-  def new
-    
+  def index
+    @purchase_records_sending = PurchaseRecordsSending.new
   end  
+  
+  
+  #def new
+  #end  
   
   
   def create
@@ -10,8 +14,8 @@ class PurchaseRecordsController < ApplicationController
   end  
   private
   def purchase_record_params
-    params.
     
+
 
 
 end
