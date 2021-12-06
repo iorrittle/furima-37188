@@ -1,0 +1,4 @@
+class PurchaseRecord < ApplicationRecord
+
+
+end
