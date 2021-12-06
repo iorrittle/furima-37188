@@ -4,8 +4,7 @@ class PurchaseRecordsSending
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :telephone_number, format: {with: /^(0{1}\d{9,10})$/,message:"is too short","is invalid. Input only number"}
-    
+    validates :telephone_number, format: { with: /\Ad{10}$|^\d{11}\z/, message:"is invalid."}
     validates :user_id
     validates :item_id
     #validates :purchase_record_id
