@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
     addTaxDom.innerHTML = Math.floor(inputValue * 0.1);
     
 
-    const addProfitDom = document.getElementById("profit")
+    const addProfitDom = document.getElementById("profit");
     
     addProfitDom.innerHTML = Math.floor(inputValue - Math.floor(inputValue * 0.1));
 

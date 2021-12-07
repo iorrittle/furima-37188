@@ -24,9 +24,14 @@ class ItemsController < ApplicationController
   end
   
   def show
+    
   end  
 
   def edit
+    unless current_user && (@item.purchase_record == nil)
+      return redirect_to root_path
+    end   
+  
   end  
 
   def update
