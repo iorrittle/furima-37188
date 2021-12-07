@@ -3,6 +3,11 @@ class PurchaseRecordsController < ApplicationController
   def index
     @purchase_records_sending = PurchaseRecordsSending.new
     @item = Item.find(params[:item_id])
+    unless current_user && (@item.purchase_record == nil)
+      return redirect_to root_path
+    end   
+
+  
   end  
   
   
@@ -12,10 +17,11 @@ class PurchaseRecordsController < ApplicationController
   
   
   def create
-    
+   
     @item = Item.find(params[:item_id])
     @purchase_records_sending = PurchaseRecordsSending.new(purchase_record_params)
     if @purchase_records_sending.valid?
+      
       pay_item
       @purchase_records_sending.save
       
@@ -40,7 +46,7 @@ class PurchaseRecordsController < ApplicationController
     )
   end
 
-
+  
 
 
 
