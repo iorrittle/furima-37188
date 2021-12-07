@@ -1,8 +1,9 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :set_purchase_record, only:[:index, :create]
   
   def index
     @purchase_records_sending = PurchaseRecordsSending.new
-    @item = Item.find(params[:item_id])
+    
     unless current_user && (@item.purchase_record == nil)
       return redirect_to root_path
     end   
@@ -10,8 +11,6 @@ class PurchaseRecordsController < ApplicationController
   
   
   def create
-   
-    @item = Item.find(params[:item_id])
     @purchase_records_sending = PurchaseRecordsSending.new(purchase_record_params)
     if @purchase_records_sending.valid?
       
@@ -38,11 +37,11 @@ class PurchaseRecordsController < ApplicationController
       currency: 'jpy'                 
     )
   end
+  def set_purchase_record
+    @item = Item.find(params[:item_id])
+  end  
 
   
-
-
-
 end
 
     

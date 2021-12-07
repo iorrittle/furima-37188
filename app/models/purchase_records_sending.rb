@@ -7,7 +7,6 @@ class PurchaseRecordsSending
     validates :telephone_number, format: { with: /\Ad{10}$|^\d{11}\z/, message:"is invalid."}
     validates :user_id
     validates :item_id
-    #validates :purchase_record_id
     validates :city
     validates :address
     validates :token
