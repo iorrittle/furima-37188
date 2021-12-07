@@ -14,9 +14,10 @@ RSpec.describe PurchaseRecordsSending, type: :model do
         expect(@purchase_records_sending).to be_valid
       end
       
-      #it 'buildingは空でも購入できること' do
-        
-      #end  
+      it 'buildingは空でも購入できること' do
+        @purchase_records_sending.building = ''
+        expect(@purchase_records_sending).to be_valid
+      end  
     
     end
 
@@ -36,7 +37,7 @@ RSpec.describe PurchaseRecordsSending, type: :model do
       end
       
       it 'prefectureを選択していないと購入できない' do
-        @purchase_records_sending.prefecture_id = '1'
+        @purchase_records_sending.prefecture_id = 1
         @purchase_records_sending.valid?
         expect(@purchase_records_sending.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -73,7 +74,12 @@ RSpec.describe PurchaseRecordsSending, type: :model do
         @purchase_records_sending.valid?
         expect(@purchase_records_sending.errors.full_messages).to include("Telephone number is invalid.")
       end
-      
+      it 'telephone_numberは12桁以上だと購入できない' do
+        @purchase_records_sending.telephone_number = '123456789012'
+        @purchase_records_sending.valid?
+        expect(@purchase_records_sending.errors.full_messages).to include("Telephone number is invalid.")
+      end
+        
       it 'userが紐づいていないと購入できない' do
         @purchase_records_sending.user_id = nil
         @purchase_records_sending.valid?
