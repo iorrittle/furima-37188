@@ -6,13 +6,6 @@ class PurchaseRecordsController < ApplicationController
     unless current_user && (@item.purchase_record == nil)
       return redirect_to root_path
     end   
-
-  
-  end  
-  
-  
-  def new
-    @purchase_records_sending = PurchaseRecordsSending.new
   end  
   
   
