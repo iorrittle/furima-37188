@@ -1,10 +1,11 @@
 class PurchaseRecordsController < ApplicationController
   before_action :set_purchase_record, only:[:index, :create]
+  before_action :authenticate_user!
   
   def index
-    @purchase_records_sending = PurchaseRecordsSending.new
     
-    unless current_user && (@item.purchase_record == nil)
+    @purchase_records_sending = PurchaseRecordsSending.new
+    if current_user.id == @item.user_id || @item.purchase_record != nil
       return redirect_to root_path
     end   
   end  
